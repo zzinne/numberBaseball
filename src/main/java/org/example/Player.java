@@ -1,9 +1,11 @@
 package org.example;
 
+import java.util.Scanner;
+
 public class Player {
     private int[] answer;
 
-    public void check(String answer){
+    public void registAnswer(String answer){
         this.answer = stringToNumber(answer);
     }
     public int[] stringToNumber(String answer){
@@ -13,6 +15,10 @@ public class Player {
             arrayAnswer[i] = Integer.parseInt(stringArray[i]);
         }
         return arrayAnswer;
+    }
+    public String sayAnwser(){
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 
     public int[] getAnswer() {
