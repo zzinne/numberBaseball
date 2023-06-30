@@ -3,11 +3,15 @@ package org.example;
 import java.util.*;
 
 public class Game {
-    private final Referee referee ;
+    private Referee referee ;
 
-    public Game() {
-        this.referee = new Referee();
-        referee.playGame();
-
+    public void start(){
+        Rule rule = new Rule();
+        Player player = new Player();
+        Count count = new Count();
+        count.askCountOver();
+        this.referee = new Referee(rule);
+        referee.setResult(Result.makeResult());
+        referee.playGame(count);
     }
 }

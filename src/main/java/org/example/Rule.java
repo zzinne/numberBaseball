@@ -6,8 +6,7 @@ import java.util.List;
 
 public class Rule {
     private int[] result;
-    private int count = 0;
-    private String printValue = "";
+
 
     public int[] getResult() {
         return result;
@@ -17,28 +16,23 @@ public class Rule {
         this.result = result;
     }
 
-    public String getPrintValue() {
-        return printValue;
-    }
 
-    public int getCount() {
-        return count;
-    }
-
-    public boolean resultCheck(int[] playerAnswer){
+    public RefereeResult resultCheck(int[] result, int[] answer, RefereeResult refereeResult){
         int ball=0;
         int strike=0;
-        int[] resultArray = getResult();
+        int[] resultArray = result;
         System.out.println("result:"+ Arrays.toString(resultArray));
-        resultArray = strikeCheck(playerAnswer, resultArray);
+        resultArray = strikeCheck(answer, resultArray);
         strike = countZero(resultArray);
         if(strike == 3){
-            this.printValue = "You Win result = :"+Arrays.toString(resultArray);
-            return true;
+            Printer.printMessage("You Win result = :"+Arrays.toString(resultArray));
+            refereeResult.setStatus(Status.END);
+            return refereeResult;
         }
-        ball = ballCheck(playerAnswer, resultArray);
-        this.printValue = strike+"S, "+ball+"B";
-        return false;
+        ball = ballCheck(answer, resultArray);
+        Printer.printMessage(strike+"S, "+ball+"B");
+        refereeResult.setStatus(Status.CONTINUED);
+        return refereeResult;
     }
     private int[] strikeCheck(int[] playerAnswer, int[] resultArray){
         for(int i=0; i < playerAnswer.length; i++){
@@ -71,16 +65,8 @@ public class Rule {
         }
         return strike;
     }
-    public int countAdd(){
-        return this.count++;
-    }
 
-    public void makeResult(){
-        List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,8,9);
-        Collections.shuffle(list);
-        result= new int[]{list.get(0),list.get(1), list.get(2)};
-        setResult(result);
-    }
+
     public boolean answerCheck(String answer){
         if (answer.length() < 3){
             return true;
