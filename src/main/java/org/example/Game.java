@@ -7,11 +7,11 @@ public class Game {
 
     public void start(){
         Rule rule = new Rule();
-        Player player = new Player();
         Count count = new Count();
+        Player player = new Player();
         count.askCountOver();
         this.referee = new Referee(rule);
         referee.setResult(Result.makeResult());
-        referee.playGame(count);
+        referee.playGame(count, player);
     }
 }

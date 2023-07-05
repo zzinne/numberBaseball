@@ -1,31 +1,17 @@
 package org.example;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class Rule {
-    private int[] result;
-
-
-    public int[] getResult() {
-        return result;
-    }
-
-    public void setResult(int[] result) {
-        this.result = result;
-    }
-
-
     public RefereeResult resultCheck(int[] result, int[] answer, RefereeResult refereeResult){
         int ball=0;
         int strike=0;
         int[] resultArray = result;
-        System.out.println("result:"+ Arrays.toString(resultArray));
+        System.out.println("result:"+ Arrays.toString(result));
         resultArray = strikeCheck(answer, resultArray);
         strike = countZero(resultArray);
         if(strike == 3){
-            Printer.printMessage("You Win result = :"+Arrays.toString(resultArray));
+            Printer.printMessage("You Win result = :"+Arrays.toString(result));
             refereeResult.setStatus(Status.END);
             return refereeResult;
         }
@@ -64,13 +50,5 @@ public class Rule {
             }
         }
         return strike;
-    }
-
-
-    public boolean answerCheck(String answer){
-        if (answer.length() < 3){
-            return true;
-        }
-        return false;
     }
 }

@@ -16,12 +16,13 @@ public class Player {
         }
         return arrayAnswer;
     }
-    public String sayAnwser(){
+    public void sayAnwser(){
+        Printer.printMessage("0 ~ 9까지의 수를 입력하세요");
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        registAnswer(scanner.nextLine());
     }
 
     public int[] getAnswer() {
-        return answer;
+        return this.answer;
     }
 }

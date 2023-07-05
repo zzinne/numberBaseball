@@ -1,7 +1,7 @@
 package org.example;
 
 public class RefereeResult {
-    private Status status;
+    private Status status = Status.CONTINUED;
 
     private String answerResult;
 
