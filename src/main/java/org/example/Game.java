@@ -4,14 +4,19 @@ import java.util.*;
 
 public class Game {
     private Referee referee ;
+    private Rule rule = new Rule();
+
+    private Count count = new Count();
+    private Player player ;
+
+    public Game() {
+        this.referee = new Referee(this.rule);
+        this.player = new Player();
+        this.referee.setResult(Result.makeResult());
+    }
 
     public void start(){
-        Rule rule = new Rule();
-        Count count = new Count();
-        Player player = new Player();
-        count.askCountOver();
-        this.referee = new Referee(rule);
-        referee.setResult(Result.makeResult());
-        referee.playGame(count, player);
+        this.count.askCountOver();
+        this.referee.playGame(this.count, this.player);
     }
 }

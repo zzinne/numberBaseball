@@ -15,7 +15,7 @@ public class Referee {
     }
 
     public void playGame(Count count, Player player){
-        while(this.refereeResult.getStatus().equals(Status.CONTINUED)){
+        while(this.refereeResult.getStatus() == Status.CONTINUED){
             player.sayAnwser();
             checkResult(count, player.getAnswer());
             count.countAdd();

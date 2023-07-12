@@ -9,12 +9,12 @@ public class Player {
         this.answer = stringToNumber(answer);
     }
     public int[] stringToNumber(String answer){
-        String[] stringArray = answer.split("");
+//        String[] stringArray = answer.split("");
         int[] arrayAnswer = new int[3];
         for(int i = 0; i < stringArray.length; i++){
             arrayAnswer[i] = Integer.parseInt(stringArray[i]);
         }
-        return arrayAnswer;
+            return arrayAnswer;
     }
     public void sayAnwser(){
         Printer.printMessage("0 ~ 9까지의 수를 입력하세요");
