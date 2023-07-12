@@ -1,22 +1,22 @@
 package org.example;
 
 public class Referee {
-    public Referee(Rule rule) {
-        this.rule = rule;
-    }
+
 
     Rule rule ;
     private int[] result;
-
-    private int[] answer;
+    Validater validater = new Validater();
     RefereeResult refereeResult = new RefereeResult();
+    public Referee(Rule rule) {
+        this.rule = rule;
+    }
     public void setResult(int[] result) {
         this.result = result;
     }
 
     public void playGame(Count count, Player player){
         while(this.refereeResult.getStatus() == Status.CONTINUED){
-            player.sayAnwser();
+            playerSayAnswer(player);
             checkResult(count, player.getAnswer());
             count.countAdd();
         }
@@ -27,7 +27,11 @@ public class Referee {
         }
         this.refereeResult = rule.resultCheck(this.result, answer, refereeResult);
     }
+    public void playerSayAnswer(Player player){
+        while(validater.validationAnswer(player.sayAnwser(), player)){
+            break;
+        }
 
-
+    }
 
 }
