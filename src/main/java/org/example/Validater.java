@@ -6,29 +6,33 @@ import java.util.Set;
 
 public class Validater {
 
-
-    public Boolean validationAnswer(String answer, Player player){
+    public int[] validationAnswer(String answer) throws Exception {
         if (numberCheck(answer) && lengthAndDupCheck(answer)){
-            player.setAnswer(stringToNumberArray(answer));
-            return true;
+            return stringToNumberArray(answer);
         }
-        return false;
+        throw new IllegalArgumentException();
     }
-    public Boolean numberCheck(String answer){
-        return answer!= null && answer.matches("[0-9]+");
+    public boolean numberCheck(String answer) throws Exception {
+        if(!(answer!= null && answer.matches("[0-9]+"))) {
+            Printer.printMessage("숫자만 입력 하세요.");
+            throw new Exception();
+        }
+        return true;
+
     }
 
     public String[] stringToArray(String answer){
         return answer.split("");
 
     }
-    public Boolean lengthAndDupCheck(String answer){
+    public Boolean lengthAndDupCheck(String answer) throws Exception {
         String[] stringArray = stringToArray(answer);
         if(stringArray.length == 3){
             Set<String> set = new HashSet<>(Arrays.asList(stringArray));
             return set.size() == stringArray.length;
         }
-        return false;
+        Printer.printMessage("숫자를 총 3개 입력하세요.");
+        throw new Exception();
     }
 
     public int[] stringToNumberArray(String answer){

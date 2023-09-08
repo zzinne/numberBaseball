@@ -1,11 +1,9 @@
 package org.example;
 
 public class Referee {
-
-
     Rule rule ;
     private int[] result;
-    Validater validater = new Validater();
+
     RefereeResult refereeResult = new RefereeResult();
     public Referee(Rule rule) {
         this.rule = rule;
@@ -16,10 +14,16 @@ public class Referee {
 
     public void playGame(Count count, Player player){
         while(this.refereeResult.getStatus() == Status.CONTINUED){
-            playerSayAnswer(player);
+//            player.playerSayAnswer();
             checkResult(count, player.getAnswer());
             count.countAdd();
         }
+    }
+    public String playGame(Player player){
+            return checkResult(player.getAnswer());
+    }
+    public String playGame(int[] answer){
+            return checkResult(answer);
     }
     public void checkResult(Count count, int[] answer){
         if (count.isCountOver()){
@@ -27,11 +31,8 @@ public class Referee {
         }
         this.refereeResult = rule.resultCheck(this.result, answer, refereeResult);
     }
-    public void playerSayAnswer(Player player){
-        while(validater.validationAnswer(player.sayAnwser(), player)){
-            break;
-        }
-
+    public String checkResult(int[] answer){
+        return rule.resultCheck(this.result, answer);
     }
 
 }

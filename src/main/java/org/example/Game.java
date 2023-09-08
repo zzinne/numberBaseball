@@ -6,7 +6,7 @@ public class Game {
     private Referee referee ;
     private Rule rule = new Rule();
 
-    private Count count = new Count();
+    public Count count = new Count();
     private Player player ;
 
     public Game() {
@@ -16,7 +16,15 @@ public class Game {
     }
 
     public void start(){
-        this.count.askCountOver();
+        this.count.setOverCount(6);
         this.referee.playGame(this.count, this.player);
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Referee getReferee() {
+        return referee;
     }
 }
